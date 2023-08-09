@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Location, Space
 
-# Register your models here.
+@admin.register(Location, Space)
+class WorkspaceAdmin(admin.ModelAdmin):
+    pass
