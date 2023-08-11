@@ -267,3 +267,6 @@ pyrightconfig.json
 
 # node modules
 node_modules/
+
+# Tailwind Cache
+spaces/static/CACHE/
