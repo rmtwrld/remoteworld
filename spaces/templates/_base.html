@@ -2,21 +2,20 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html data-theme="cupcake">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     {% endcompress %}
 
     {% block seo %}
     {% endblock seo %}
   </head>
-<body class="bg-green-50">
-    <div class="container mx-auto mt-4">
+<body>
         {% block main %}
         {% endblock main %}
-    </div>
 </body>
 </html>
