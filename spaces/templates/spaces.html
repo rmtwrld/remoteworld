@@ -1,36 +1,54 @@
-{% extends '_base.html' %}
+{% extends 'base.html' %}
 
 {% block seo %}
-<title>Remote World- {{ destination }}</title>
+<title>Remote World - {{ destination }}</title>
 {% endblock seo %}
-
 
 {% block main %}
 
+
+<div class='max-w-md mx-auto my-10'>
+  <form type="GET" action=".">   
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="justify-center mt-4 flex">
+        <input name="destination" value="{{ destination }}" id="destination" type="text" placeholder="Where are you working from today?" class="input input-bordered input-primary bg-white w-full max-w-xs" required />
+        <button id="destination_submit" type="submit" class="mx-1 btn btn-active btn-primary">Find spaces</button>
+      </div>
+</form>
+</div>
+
 {% block destinations %}
+
+
 
 <div class="container mx-auto px-10">
   <h1 class="text-3xl font-bold py-5">Popular spaces in {{ destination }}</h1>
+  
+  <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
 
+    {% for space in spaces %}
+    <div class="rounded overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{ space.space_name }}</div>
+      </div>
+      <div class="px-6 pt-1 pb-2 card-actions">
+        <span class="inline-block bg-accent rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">{{ space.is_type }}</span>
+        {% if space.has_internet %}
+        <span class="inline-block bg-primary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">internet</span>
+        {% endif %}
+        {% if space.is_meeting_friendly %}
+        <span class="inline-block bg-secondary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">meeting friendly</span>
+        {% endif %}
+      </div>
+      <div class="card-actions px-6 py-4 justify-center">
+      <a class="btn btn-wide" target="_blank" href="{{ space.url }}">View</a>
+      </div>
+    </div>
+    {% endfor %}
 
-<div class="carousel my-3">
-  <div class="carousel-item px-1">
-    <figure><img src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg" alt="Burger" /></figure>
-  </div> 
-  <div class="carousel-item px-1">
-    <img src="https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item px-1">
-    <img src="https://daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item px-1">
-    <img src="https://daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item px-1">
-    <img src="https://daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg" alt="Burger" />
-  </div> 
+  </div>
+
 </div>
-
 {% endblock destinations %}
 
 
@@ -40,21 +58,72 @@
 <ul class="menu menu-horizontal bg-white fixed bottom-3 rounded-box shadow-2xl">
   <li>
     <a class="tooltip" data-tip="Home" href="/">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
     </a>
   </li>
   <li>
-    <a class="tooltip" data-tip="Details">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <a class="tooltip" data-tip="Add a space" onclick="addSpace.showModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
     </a>
   </li>
   <li>
-    <a class="tooltip" data-tip="Stats">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/></svg>
+    <a class="tooltip" data-tip="Filter" onclick="filterSpace.showModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/></svg>
     </a>
   </li>
 </ul>
 </div>
+
 {% endblock floatingmenu %}
+
+
+{% block addSpace %}
+<dialog id="addSpace" class="modal">
+  <form method="dialog" class="modal-box">
+    <h3 class="font-bold text-lg">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <!-- if there is a button in form, it will close the modal -->
+      <button class="btn">Add space</button>
+    </div>
+  </form>
+</dialog>
+{% endblock addSpace %}
+
+
+{% block filterSpace %}
+<dialog id="filterSpace" class="modal">
+  <form method="dialog" class="modal-box">
+    <h3 class="font-bold text-xl mb-2">Filter spaces</h3>
+
+    <label class="label cursor-pointer">
+      <span class="label-text">Coworking space</span> 
+      <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+    </label>
+    <label class="label cursor-pointer">
+      <span class="label-text">Cafe</span> 
+      <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+    </label>
+    <label class="label cursor-pointer">
+      <span class="label-text">Open area</span> 
+      <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+    </label>
+
+      <label class="label cursor-pointer">
+        <span class="label-text">Internet</span> 
+        <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+      </label>
+      <label class="label cursor-pointer">
+        <span class="label-text">Meeting friendly</span> 
+        <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+      </label>
+    </div>   
+    <div class="modal-action">
+      <!-- if there is a button in form, it will close the modal -->
+      <button type="submit" class="btn">Filter</button>
+    </div>
+  </form>
+</dialog>
+{% endblock filterSpace %}
 
 {% endblock main %}

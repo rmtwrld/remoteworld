@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Space, Location
 
 # Show poplular destinations and when user clicks on the popular Locations call get_spaces
 # Will have a search feature when user can enter destination name
@@ -6,8 +7,9 @@ from django.shortcuts import render
 def index(request):
     destination = request.GET.get('destination')
     if destination != None:
-        destination = destination.lower()
-        return render(request, "spaces.html", {"destination":destination})
+        destination = destination.capitalize()
+        spaces = Space.objects.filter(location__location_name__contains=destination)
+        return render(request, "spaces.html", {"destination":destination, "spaces":spaces})
     return render(request, "index.html")
 
 # Accepts a location name and if the location name matches DB then show spaces present in location
