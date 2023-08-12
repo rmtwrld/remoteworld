@@ -27,17 +27,17 @@
   <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
 
     {% for space in spaces %}
-    <div class="rounded overflow-hidden shadow-lg">
+    <div class="spaceCard rounded overflow-hidden shadow-lg {{ space.is_type }} internet-{{ space.has_internet }} meeting-{{ space.is_meeting_friendly }}">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ space.space_name }}</div>
       </div>
       <div class="px-6 pt-1 pb-2 card-actions">
-        <span class="inline-block bg-accent rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">{{ space.is_type }}</span>
+        <span class="inline-block bg-accent rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="{{ space.is_type }}">{{ space.is_type }}</span>
         {% if space.has_internet %}
-        <span class="inline-block bg-primary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">internet</span>
+        <span class="inline-block bg-primary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="internet-{{ space.has_internet }}">internet</span>
         {% endif %}
         {% if space.is_meeting_friendly %}
-        <span class="inline-block bg-secondary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">meeting friendly</span>
+        <span class="inline-block bg-secondary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="meeting-{{ space.is_meeting_friendly }}">meeting friendly</span>
         {% endif %}
       </div>
       <div class="card-actions px-6 py-4 justify-center">
@@ -93,34 +93,29 @@
 
 {% block filterSpace %}
 <dialog id="filterSpace" class="modal">
-  <form method="dialog" class="modal-box">
-    <h3 class="font-bold text-xl mb-2">Filter spaces</h3>
+  <form method="dialog" class="modal-box" name="filterForm" method="GET" id="filterForm">
+    <h3 class="font-bold text-xl mb-2">Filter spaces by</h3>
 
-    <label class="label cursor-pointer">
-      <span class="label-text">Coworking space</span> 
-      <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
-    </label>
-    <label class="label cursor-pointer">
-      <span class="label-text">Cafe</span> 
-      <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
-    </label>
-    <label class="label cursor-pointer">
-      <span class="label-text">Open area</span> 
-      <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
-    </label>
-
+    <select class="select select-bordered w-full max-w-xs" onclick="chooseSpace()">
+      <option selected value="all">All spaces</option>
+      <option value="coworking">Coworking space</option>
+      <option value="cafe">Cafe</option>
+      <option value="hostel">Hostel</option>
+    </select>
+  
       <label class="label cursor-pointer">
         <span class="label-text">Internet</span> 
-        <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+        <input id="internet" type="checkbox" class="checkbox checkbox-xs" onclick="hasInternet()" />
       </label>
       <label class="label cursor-pointer">
         <span class="label-text">Meeting friendly</span> 
-        <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+        <input id="meeting-friendly" type="checkbox" class="checkbox checkbox-xs" onclick="isMeetingFriendly()" />
       </label>
     </div>   
     <div class="modal-action">
       <!-- if there is a button in form, it will close the modal -->
-      <button type="submit" class="btn">Filter</button>
+      <button type="submit" class="btn" onclick="resetFilter()" >Reset Filters</button>
+      <button type="submit" class="btn btn-primary" >Filter</button>
     </div>
   </form>
 </dialog>
