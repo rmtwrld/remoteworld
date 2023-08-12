@@ -1,7 +1,7 @@
 {% extends '_base.html' %}
 
 {% block seo %}
-<title>Remote World- {{ location }}</title>
+<title>Remote World- {{ destination }}</title>
 {% endblock seo %}
 
 
@@ -10,7 +10,7 @@
 {% block destinations %}
 
 <div class="container mx-auto px-10">
-  <h1 class="text-3xl font-bold py-5">Popular spaces in {{ location }}</h1>
+  <h1 class="text-3xl font-bold py-5">Popular spaces in {{ destination }}</h1>
 
 
 <div class="carousel my-3">
@@ -39,7 +39,7 @@
 <div class="flex items-center justify-center z-50">
 <ul class="menu menu-horizontal bg-white fixed bottom-3 rounded-box shadow-2xl">
   <li>
-    <a class="tooltip" data-tip="Home">
+    <a class="tooltip" data-tip="Home" href="/">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
     </a>
   </li>

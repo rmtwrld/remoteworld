@@ -14,11 +14,11 @@
       <h1 class="text-5xl font-bold my-3">Explore top rated cafes &amp; coworking spaces</h1>
       <div class="my-8">
         <div class='max-w-md mx-auto'>
-          <form>   
+          <form type="GET" action=".">   
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="justify-center mt-4 flex">
-                <input type="text" placeholder="Where are you working from today?" class="input input-bordered input-primary bg-white w-full max-w-xs" required />
-                <button type="submit" class="mx-1 btn btn-active btn-primary">Find spaces</button>
+                <input name="destination" id="destination" type="text" placeholder="Where are you working from today?" class="input input-bordered input-primary bg-white w-full max-w-xs" required />
+                <button id="destination_submit" type="submit" class="mx-1 btn btn-active btn-primary">Find spaces</button>
               </div>
         </form>
       </div>
