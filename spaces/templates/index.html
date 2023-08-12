@@ -7,26 +7,23 @@
 
 {% block main %}
 {% block hero %}
-<div class="hero">
+<div class="hero min-h-screen">
   <div class="hero-content text-center">
-    <div class="max-w-10">
+    <div class="max-w-full">
       <h1 class="text-3xl font-bold pt-20">Remote World</h1>
-      <h1 class="text-5xl font-bold">Explore top rated cafes &amp; coworking spaces</h1>
+      <h1 class="text-5xl font-bold my-3">Explore top rated cafes &amp; coworking spaces</h1>
       <div class="my-8">
         <div class='max-w-md mx-auto'>
-          <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-              <div class="grid place-items-center h-full w-12 text-gray-300 bg-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
+          <form>   
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="justify-center mt-4 flex">
+                <input type="text" placeholder="Where are you working from today?" class="input input-bordered input-primary bg-white w-full max-w-xs" required />
+                <button type="submit" class="mx-1 btn btn-active btn-primary">Find spaces</button>
               </div>
-      
-              <input
-              class="peer bg-white h-full w-full outline-none text-sm text-gray-700 pr-2"
-              type="text"
-              id="search"
-              placeholder="Where are you working from today?" /> 
-          </div>
+        </form>
+      </div>
+      <div class="mt-8">
+        <h1 class="text-xl font-bold"><a class="link link-accent">Join the community</a></h1>
       </div>
     </div>
     </div>
@@ -34,34 +31,5 @@
 </div>
 </div>
 {% endblock hero %}
-
-{% block destinations %}
-
-<div class="container mx-auto px-10">
-  <h1 class="text-3xl font-bold py-5">Popular Destinations</h1>
-
-
-<div class="carousel rounded-box">
-  <div class="carousel-item">
-    <img src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item">
-    <img src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item">
-    <img src="https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item">
-    <img src="https://daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item">
-    <img src="https://daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg" alt="Burger" />
-  </div> 
-  <div class="carousel-item">
-    <img src="https://daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg" alt="Burger" />
-  </div> 
-</div>
-
-{% endblock destinations %}
 
 {% endblock main %}
