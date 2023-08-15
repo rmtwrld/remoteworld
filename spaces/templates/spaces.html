@@ -81,12 +81,15 @@
 <dialog id="addSpace" class="modal">
   <form method="post" class="modal-box" action="/addspace/">
     {% csrf_token %}
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    {{ form.as_p }}
+    <h3 class="font-bold text-lg">Add a space</h3>
+    <p class="py-4">Press ESC key to close</p>
+    {% for field in form %}
+        <label class="label cursor-pointer" for="{{ field.auto_id }}"><span class="label-text">{{ field.label }}</span></label>
+        {{ field }}
+    {% endfor %}
     <div class="modal-action">
       <!-- if there is a button in form, it will close the modal -->
-      <button class="btn">Add space</button>
+      <button type="submit" class="btn btn-primary">Add space</button>
     </div>
   </form>
 </dialog>
