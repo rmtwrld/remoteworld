@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Space, Location
+from .forms import AddSpaceForm
 
 # Show poplular destinations and when user clicks on the popular Locations call get_spaces
 # Will have a search feature when user can enter destination name
@@ -9,10 +10,15 @@ def index(request):
     if destination != None:
         destination = destination.capitalize()
         spaces = Space.objects.filter(location__location_name__contains=destination)
-        return render(request, "spaces.html", {"destination":destination, "spaces":spaces})
+        form =  AddSpaceForm()
+        return render(request, "spaces.html", {"destination":destination, "spaces":spaces, "form":form})
     return render(request, "index.html")
 
-# Accepts a location name and if the location name matches DB then show spaces present in location
-# User can filter the type of spaces as per all the boolean fields and add a new space
-# If location returns zero spaces, ask the user to add as primary action
+def add_space(request):
+    form = AddSpaceForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return render(request,"space-submission.html")
+    return redirect('index')
+
     
