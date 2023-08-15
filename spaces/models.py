@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Location(models.Model):
-    location_name = models.CharField(max_length=200)
+    location_name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.location_name

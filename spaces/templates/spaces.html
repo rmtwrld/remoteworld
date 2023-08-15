@@ -96,7 +96,7 @@
   <form method="dialog" class="modal-box" name="filterForm" method="GET" id="filterForm">
     <h3 class="font-bold text-xl mb-2">Filter spaces by</h3>
 
-    <select class="select select-bordered w-full max-w-xs" onclick="chooseSpace()">
+    <select class="select select-bordered w-full max-w-xs">
       <option selected value="all">All spaces</option>
       <option value="coworking">Coworking space</option>
       <option value="cafe">Cafe</option>
@@ -115,7 +115,7 @@
     <div class="modal-action">
       <!-- if there is a button in form, it will close the modal -->
       <button type="submit" class="btn" onclick="resetFilter()" >Reset Filters</button>
-      <button type="submit" class="btn btn-primary" >Filter</button>
+      <button type="submit" class="btn btn-primary" onclick="chooseSpace()" >Filter</button>
     </div>
   </form>
 </dialog>

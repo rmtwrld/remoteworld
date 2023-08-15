@@ -6,11 +6,14 @@ function chooseSpace(){
             allCards[i].style.display = ''
         }
     } else {
+        let allCards = document.getElementsByClassName("spaceCard")
+        for(let i=0; i<allCards.length; i++){
+            allCards[i].style.display = ''
+        }
         let spaceTypes = ["coworking","cafe","hostel"]
         let filteredSpaces= spaceTypes.filter(function(ele){
             return ele != filterForm[0].value
         })
-        console.log(filteredSpaces)
         let spaceToBeRemoved = document.querySelectorAll(`.${filteredSpaces[0]},.${filteredSpaces[1]}`)
         for(let i=0;i<spaceToBeRemoved.length;i++){
             spaceToBeRemoved[i].style.display = 'none'
