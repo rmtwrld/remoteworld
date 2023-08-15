@@ -19,6 +19,7 @@ def add_space(request):
     if form.is_valid():
         form.save()
         return render(request,"space-submission.html")
-    #return redirect('index')
-    return render(request, "space-submission.html")
-    
+    return redirect('index')
+
+def contribute(request):
+    return render(request, "contribute.html")
