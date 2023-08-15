@@ -6,46 +6,57 @@
 
 {% block main %}
 
+{% block navbar %}
 
-<div class='max-w-md mx-auto my-10'>
-  <form type="GET" action=".">   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-    <div class="justify-center mt-4 flex">
-        <input name="destination" value="{{ destination }}" id="destination" type="text" placeholder="Where are you working from today?" class="input input-bordered input-primary bg-white w-full max-w-xs" required />
-        <button id="destination_submit" type="submit" class="mx-1 btn btn-active btn-primary">Find spaces</button>
-      </div>
-</form>
+<div class="navbar bg-base-100 px-10">
+  <div class="flex-1">
+    <a href="/" class="btn btn-ghost normal-case text-xl text-accent">rmt-wrld</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1 font-bold">
+      <li><a>Community</a></li>
+      <li><a>GitHub</a></li>
+    </ul>
+  </div>
 </div>
+
+{% endblock navbar %}
+
+
 
 {% block destinations %}
 
 
 
 <div class="container mx-auto px-10">
-  <h1 class="text-3xl font-bold py-5">Popular spaces in {{ destination }}</h1>
+  <h1 class="text-3xl font-bold py-5">Popular spaces in <span class="text-accent">{{ destination }}</span></h1>
   
   <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-
+    {% if spaces %}
     {% for space in spaces %}
-    <div class="spaceCard rounded overflow-hidden shadow-lg {{ space.is_type }} internet-{{ space.has_internet }} meeting-{{ space.is_meeting_friendly }}">
+      {% if space.is_approved %}
+    <div class="spaceCard bg-base-100 rounded overflow-hidden shadow-lg {{ space.is_type }} internet-{{ space.has_internet }} meeting-{{ space.is_meeting_friendly }}">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ space.space_name }}</div>
       </div>
       <div class="px-6 pt-1 pb-2 card-actions">
-        <span class="inline-block bg-accent rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="{{ space.is_type }}">{{ space.is_type }}</span>
+        <span class="inline-block badge-info rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="{{ space.is_type }}">{{ space.is_type }}</span>
         {% if space.has_internet %}
-        <span class="inline-block bg-primary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="internet-{{ space.has_internet }}">internet</span>
+        <span class="inline-block badge-neutral rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="internet-{{ space.has_internet }}">internet</span>
         {% endif %}
         {% if space.is_meeting_friendly %}
-        <span class="inline-block bg-secondary rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="meeting-{{ space.is_meeting_friendly }}">meeting friendly</span>
+        <span class="inline-block badge-accent rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="meeting-{{ space.is_meeting_friendly }}">meeting friendly</span>
         {% endif %}
       </div>
       <div class="card-actions px-6 py-4 justify-center">
       <a class="btn btn-wide" target="_blank" href="{{ space.url }}">View</a>
       </div>
     </div>
+      {% endif %}
     {% endfor %}
-
+    {% else %}
+    <h1>hello</h1>
+    {% endif %}
   </div>
 
 </div>
