@@ -1,4 +1,4 @@
-{% load compress %}
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -7,10 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="{% static 'src/script.js' %}"></script> 
-    {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    {% endcompress %}
 
     {% block seo %}
     {% endblock seo %}
