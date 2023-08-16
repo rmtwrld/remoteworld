@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block seo %}
 <title>Remote World</title>
@@ -11,7 +12,13 @@
 <div class="hero min-h-screen">
   <div class="hero-content text-center">
     <div class="max-w-full">
-      <h1 class="text-3xl font-bold pt-20">Remote World</h1>
+
+      <div class="avatar">
+        <div class="w-28 rounded">
+          <img src="{% static 'img/rmtwrld.png' %}">
+        </div>
+      </div>
+
       <h1 class="text-5xl font-bold my-3">Find top cafes &amp; coworking spaces to work</h1>
       <div class="my-8">
         <div class='max-w-md mx-auto'>
