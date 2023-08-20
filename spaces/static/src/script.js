@@ -1,10 +1,12 @@
 function chooseSpace(){
     let filterForm = document.getElementById("filterForm");
+
     if(filterForm[0].value == "all"){
         let allCards = document.getElementsByClassName("spaceCard")
         for(let i=0; i<allCards.length; i++){
             allCards[i].style.display = ''
         }
+    
     } else {
         let allCards = document.getElementsByClassName("spaceCard")
         for(let i=0; i<allCards.length; i++){
@@ -20,7 +22,9 @@ function chooseSpace(){
         }
     }
     
+    
 }
+
 
 function hasInternet(){
     let hasNoInternet = document.getElementsByClassName("internet-False");
@@ -28,10 +32,6 @@ function hasInternet(){
     if(filterForm[1].checked == true){
         for(let i=0; i<hasNoInternet.length;i++){
             hasNoInternet[i].style.display = 'none'
-        }
-    } else {
-        for(let i=0; i<hasNoInternet.length;i++){
-            hasNoInternet[i].style.display = ''
         }
     }
 
@@ -44,12 +44,7 @@ function isMeetingFriendly(){
         for(let i=0; i<notMeetingFriendly.length;i++){
             notMeetingFriendly[i].style.display = 'none'
         }
-    } else {
-        for(let i=0; i<notMeetingFriendly.length;i++){
-            notMeetingFriendly[i].style.display = ''
-        }
-    }
-
+    } 
 }
 
 function resetFilter(){
@@ -58,4 +53,10 @@ function resetFilter(){
         allCards[i].style.display = ''
     }
 
+}
+
+function filter(){
+    chooseSpace();
+    hasInternet();
+    isMeetingFriendly();
 }

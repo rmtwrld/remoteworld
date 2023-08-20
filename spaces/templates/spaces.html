@@ -59,10 +59,10 @@
       <div class="px-6 pt-1 pb-2 card-actions">
         <span class="inline-block badge-info rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="{{ space.is_type }}">{{ space.is_type }}</span>
         {% if space.has_internet %}
-        <span class="inline-block badge-neutral rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="internet-{{ space.has_internet }}">internet</span>
+        <span class="inline-block badge-neutral rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="internet-{{ space.has_internet }}">Internet 🌐</span>
         {% endif %}
         {% if space.is_meeting_friendly %}
-        <span class="inline-block badge-accent rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="meeting-{{ space.is_meeting_friendly }}">meeting friendly</span>
+        <span class="inline-block badge-accent rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" id="meeting-{{ space.is_meeting_friendly }}">Meeting friendly 💻</span>
         {% endif %}
       </div>
       <div class="card-actions px-6 py-4 justify-center">
@@ -138,17 +138,17 @@
   
       <label class="label cursor-pointer">
         <span class="label-text">Internet</span> 
-        <input id="internet" type="checkbox" class="checkbox checkbox-xs" onclick="hasInternet()" />
+        <input id="internet" type="checkbox" class="checkbox checkbox-xs" />
       </label>
       <label class="label cursor-pointer">
         <span class="label-text">Meeting friendly</span> 
-        <input id="meeting-friendly" type="checkbox" class="checkbox checkbox-xs" onclick="isMeetingFriendly()" />
+        <input id="meeting-friendly" type="checkbox" class="checkbox checkbox-xs" />
       </label>
     </div>   
     <div class="modal-action">
       <!-- if there is a button in form, it will close the modal -->
-      <button type="submit" class="btn" onclick="resetFilter()" >Reset Filters</button>
-      <button type="submit" class="btn btn-primary" onclick="chooseSpace()" >Filter</button>
+      <button class="btn" onclick="resetFilter()" >Reset Filters</button>
+      <button type="submit" class="btn btn-primary" onclick="filter()">Filter</button>
     </div>
   </form>
 </dialog>
