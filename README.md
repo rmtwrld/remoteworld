@@ -32,12 +32,67 @@ From effortlessly reserving seats at workspaces while on the move, to providing 
 In my mind's eye, I foresee rmtworld's evolution into nothing short of an internet-based nation, revolutionizing the way nomads connect and thrive.
 
 ## Contributing
+This product is developed using [django](https://www.djangoproject.com).
+* [Install Python](https://www.python.org/downloads/)
+* [Install Git](https://git-scm.com/downloads)
+* [Install GitHub CLI](https://cli.github.com)
+* [Install node.js](https://nodejs.org)
 
+### Cloning the repository
+```
+gh repo clone thetronjohnson/remoteworld
+```
+  
 ### Setting up the virtual environment
+Navigate to the repository and create a virtual environment
+```
+cd remoteworld
+python -m venv .venv
+```
+Now activate the virtual environment
+```
+source .venv/bin/activate
+```
 ### Installing dependencies
+```
+pip install -r requirements.txt
+```
 #### Tailwind
+This product uses [tailwind css](https://tailwindcss.com) & [daisyUI](https://daisyui.com/)
+Ensure that you have node.js and npm installed
+```
+node -v
+npm -v
+```
+To install the requirements run
+```
+npm install
+```
 ### Configuring environments
+You need to configure environment variables for to run the server for that create a `.env` file in the root directory and copy the below content to it
+```
+SECRET_KEY=SOME$SUPER%SECRET*KEY007
+DEBUG=True
+DATABASE_ENGINE=django.db.backends.sqlite3
+DATABASE_NAME=db.sqlite3
+```
+
+### Running migrations
+```
+python manage.py migrate
+```
+
 ### Running the server
+```
+python manage.py runserver
+```
+
+If you're working on the front end you need to generate CSS for tailwind so open a new terminal tab and run along with the django server
+```
+npx tailwindcss -i ./spaces/static/src/input.css -o ./spaces/static/src/output.css --watch
+```
+
+
 
 
 
