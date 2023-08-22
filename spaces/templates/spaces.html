@@ -18,8 +18,8 @@
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1 font-bold">
-      <li><a>Community</a></li>
-      <li><a>GitHub</a></li>
+      <li><a href="https://discord.gg/hmDmyzt7ej" target="_blank">Community</a></li>
+      <li><a href="https://github.com/rmtwrld/remoteworld" target="_blank">GitHub</a></li>
     </ul>
   </div>
 </div>
@@ -111,10 +111,16 @@
     {% csrf_token %}
     <h3 class="font-bold text-lg">Add a space</h3>
     <p class="py-4">Press ESC key to close</p>
+    <div class="grid grid-cols-3 gap-4">
     {% for field in form %}
-        <label class="label cursor-pointer" for="{{ field.auto_id }}"><span class="label-text">{{ field.label }}</span></label>
-        {{ field }}
+      <div>
+       <label class="label cursor-pointer block" for="{{ field.auto_id }}"><span class="label-text">{{ field.label }}</span></label>
+      </div>
+      <div class="col-span-2">
+       {{ field }}
+      </div>
     {% endfor %}
+    </div>
     <div class="modal-action">
       <!-- if there is a button in form, it will close the modal -->
       <button type="submit" class="btn btn-primary">Add space</button>
