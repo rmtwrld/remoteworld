@@ -1,0 +1,11 @@
+# Installed Apps
+amplitude
+
+# MiddleWare
+amplitude.middleware.SessionInfo
+amplitude.middleware.SendPageViewEvent
+
+# General Settings
+AMPLITUDE_API_KEY = env('AMPLITUDE_KEY')
+AMPLITUDE_INCLUDE_USER_DATA = False
+AMPLITUDE_INCLUDE_GROUP_DATA = False
