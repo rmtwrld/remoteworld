@@ -31,7 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'amplitude',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -42,8 +44,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'amplitude.middleware.SessionInfo',
     'amplitude.middleware.SendPageViewEvent',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'remoteworld.urls'
@@ -96,9 +101,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "spaces/static"]  
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AMPLITUDE_API_KEY = env('AMPLITUDE_KEY')
 AMPLITUDE_INCLUDE_USER_DATA = False
