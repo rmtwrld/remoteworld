@@ -19,7 +19,7 @@ SECRET_KEY = env.str(
 DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ["*"]  
-CSRF_TRUSTED_ORIGINS = ["https://*.fly.dev"]  
+CSRF_TRUSTED_ORIGINS = ["https://*.fly.dev","https://*.remoteworld.space"]  
 
 # Application definition
 
