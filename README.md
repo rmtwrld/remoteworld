@@ -40,7 +40,7 @@ This product is developed using [django](https://www.djangoproject.com).
 
 ### Cloning the repository
 ```
-gh repo clone thetronjohnson/remoteworld
+gh repo clone rmtwrld/remoteworld
 ```
   
 ### Setting up the virtual environment
