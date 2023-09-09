@@ -270,3 +270,5 @@ node_modules/
 
 # Tailwind Cache
 spaces/static/CACHE/
+
+.DS_Store
