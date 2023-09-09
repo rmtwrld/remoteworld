@@ -1,19 +1,25 @@
 import os
-from dotenv import load_dotenv
+from environs import Env
 from pathlib import Path
+
+env = Env()  # new
+env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / '.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = env.str(
+  "SECRET_KEY", 
+  default="django-insecure-^qi19(+(oo-ere5b&$@275chw)k@7ob1)74aol5d$(k*)5kk5)",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ["*"]  
+CSRF_TRUSTED_ORIGINS = ["https://*.fly.dev"]  
 
 # Application definition
 
@@ -38,11 +44,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'amplitude.middleware.SessionInfo',
     'amplitude.middleware.SendPageViewEvent',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'remoteworld.urls'
@@ -66,10 +72,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'remoteworld.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DATABASE_ENGINE'),
-        'NAME': os.getenv('DATABASE_NAME'),
-    }
+    "default": env.dj_db_url("DATABASE_URL", default="sqlite:///db.sqlite3"),
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -100,6 +103,8 @@ STATICFILES_DIRS = [BASE_DIR / "spaces/static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-AMPLITUDE_API_KEY = os.getenv('AMPLITUDE_KEY')
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AMPLITUDE_API_KEY = env('AMPLITUDE_KEY')
 AMPLITUDE_INCLUDE_USER_DATA = False
 AMPLITUDE_INCLUDE_GROUP_DATA = False
