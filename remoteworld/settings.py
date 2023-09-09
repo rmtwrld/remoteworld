@@ -19,7 +19,6 @@ SECRET_KEY = env.str(
 DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ["*"]  
-CSRF_TRUSTED_ORIGINS = ["https://*.fly.dev","https://*.remoteworld.space"]  
 
 # Application definition
 
@@ -32,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
-    'amplitude',
     'corsheaders',
 ]
 
@@ -44,8 +42,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'amplitude.middleware.SessionInfo',
-    'amplitude.middleware.SendPageViewEvent',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -104,7 +100,3 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AMPLITUDE_API_KEY = env('AMPLITUDE_KEY')
-AMPLITUDE_INCLUDE_USER_DATA = False
-AMPLITUDE_INCLUDE_GROUP_DATA = False
