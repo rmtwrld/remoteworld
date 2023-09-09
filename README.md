@@ -53,6 +53,10 @@ Now activate the virtual environment
 ```
 source .venv/bin/activate
 ```
+Ensure that your python version is 3.10+
+```
+python --version
+```
 ### Installing dependencies
 ```
 pip install -r requirements.txt
@@ -69,12 +73,10 @@ To install the requirements run
 npm install
 ```
 ### Configuring environments
-You need to configure environment variables for to run the server for that create a `.env` file in the root directory and copy the below content to it
+You need to configure environment variables for to run the development server for that create a `.env` file in the root directory and copy the below content to it
+
 ```
-SECRET_KEY=SOME$SUPER%SECRET*KEY007
 DEBUG=True
-DATABASE_ENGINE=django.db.backends.sqlite3
-DATABASE_NAME=db.sqlite3
 ```
 
 ### Running migrations
