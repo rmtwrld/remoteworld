@@ -1,22 +1,16 @@
 import os
-import environ
+from dotenv import load_dotenv
 from pathlib import Path
-
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+load_dotenv(BASE_DIR / '.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -73,8 +67,8 @@ WSGI_APPLICATION = 'remoteworld.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env('DATABASE_ENGINE'),
-        'NAME': env('DATABASE_NAME'),
+        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        'NAME': os.getenv('DATABASE_NAME'),
     }
 }
 
@@ -106,6 +100,6 @@ STATICFILES_DIRS = [BASE_DIR / "spaces/static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-AMPLITUDE_API_KEY = env('AMPLITUDE_KEY')
+AMPLITUDE_API_KEY = os.getenv('AMPLITUDE_KEY')
 AMPLITUDE_INCLUDE_USER_DATA = False
 AMPLITUDE_INCLUDE_GROUP_DATA = False
